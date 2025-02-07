@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"  # Admin web interface
+    volumes:
+      - /mnt/truenas_nfs/npm/data:/data
+      - /mnt/truenas_nfs/npm/letsencrypt:/etc/letsencrypt
+    environment:
+      - NPM_UID=0 
+      - NPM_GID=0  
+
+    deploy:
+      restart_policy:
+        condition: on-failure

@@ -1,0 +1,29 @@
+version: '3'
+services:
+
+  ghost:
+    image: ghost:latest
+    restart: always
+    ports:
+      - 8080:2368
+    depends_on:
+      - db
+    environment:
+      url: https://blog.joysontech.com
+      database__client: mysql
+      database__connection__host: db
+      database__connection__user: root
+      database__connection__password: J@y2dworld2916
+      database__connection__database: ghost
+    volumes:
+        - /mnt/truenas_nfs/ghost-blog/ghost:/var/lib/ghost/content
+        
+  db:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: J@y2dworld2916
+    volumes:
+      - /mnt/truenas_nfs/ghost-blog/db:/var/lib/mysql
