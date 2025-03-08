@@ -13,7 +13,7 @@ services:
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
-      database__connection__password: J@y2dworld2916
+      database__connection__password: password
       database__connection__database: ghost
     volumes:
         - /mnt/truenas_nfs/ghost-blog/ghost:/var/lib/ghost/content
